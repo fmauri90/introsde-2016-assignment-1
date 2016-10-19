@@ -80,7 +80,7 @@ In order to execute this project you need the following technologies (in the bra
 Then, clone the repository. Run in your terminal:
 
 ```
-git clone https://github.com/abonte/introsde-2015-assignment-1.git && cd introsde-2015-assignment-1
+git clone https://github.com/fmauri90/introsde-2015-assignment-1.git && cd introsde-2015-assignment-1
 ```
 
 and run the following command:
