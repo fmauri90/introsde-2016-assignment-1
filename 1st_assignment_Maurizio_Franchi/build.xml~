@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!-- Laboratory of Service Design and Engineering 
+	1st assignment
+	Maurizio Franchi (Matricola. 16624)
+-->
+<project name="Assigment1" default="compile" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+	
+	<property name="ivy.install.version" value="2.4.0-rc1" />
+	<property name="ivy.jar.dir" value="${basedir}/ivy" />
+	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+
+	<!--  download ivy.jar if not in the "ivy" folder yet -->
+	<target name="download-ivy" unless="skip.download">
+		<mkdir dir="${ivy.jar.dir}"/>
+		<!-- download Ivy from web site so that it can be used even without any special installation -->
+		<echo message="installing ivy..."/>
+		<get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
+	</target>
+	
+	<target name="install-ivy" depends="download-ivy" description="--> install ivy">
+		<path id="ivy.lib.path">
+			<fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+	</target>
+
+	<!-- properties definitions -->
+	<property name="build.dir" value="build" />
+	<property name="src.dir" value="src" />
+	<property name="lib.dir" value="lib" />
+	<property name="xjc.package" value="healthprofile.generated" />
+
+	<!-- downloads the dependencies to lib folder-->
+	<target name="resolve" depends="install-ivy" description="--> retrieve dependencies with ivy">
+		<ivy:retrieve pattern="${lib.dir}/[artifact]-[type]-[revision].[ext]"/>
+	</target>
+
+	<!-- paths where ivy libraries will be downloaded, use them as classpathref in compilation and running tasks  -->
+	<path id="lib.path.id">
+		<fileset dir="${lib.dir}" />
+	</path>
+
+	<path id="run.path.id">
+		<path refid="lib.path.id" />
+		<fileset dir="${build.dir}">
+			<include name="*.class" />
+			<include name="**/*.class" />
+			<exclude name="**/*Test*" />
+		</fileset>
+	</path>
+
+	<target name="init" depends="install-ivy, resolve">
+        <echo message="Init has been called"/>
+        <mkdir dir="${build.dir}" />
+        <echo message="${build.dir} has been created"/>
+    </target>
+
+	
+    <target name="compile" depends="init, generate">
+        <echo message="Compile target has been called"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}"  classpathref="lib.path.id" includeAntRuntime="false"/>
+		<copy todir="${build.dir}" overwrite="true">
+			<fileset dir="${build.dir}">
+				<include name="*.xml" />
+			</fileset>
+		</copy>
+    </target>
+	
+	<!-- generate JAVA classes starting from XSD, using XJC -->
+	<target name="generate" depends="init">
+		<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask" classpathref="lib.path.id">
+		</taskdef>
+		<xjc schema="people.xsd" destdir="${build.dir}" package="${xjc.package}" />
+	</target>
+    
+    <target name="archive" depends="init">
+        <echo>Starting to archive...</echo>
+        <jar destfile="dist/project.jar" basedir="${src.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="HealthProfileAssignment1" />
+                <attribute name="Class-Path" value="${src.dir}"/>
+            </manifest>
+        </jar>
+        <echo>Archived!</echo>
+    </target>
+
+    <!-- get methods -->
+	
+	<target name="execute.evaluation">
+        <!-- A function which accepts a weight and an operator (=, >, <) as parameters and prints people that fulfill that condition (i.e., >80Kg, =75Kg, etc.) -->
+	<echo message = "accepts a weight and an operator as parameters and prints people that fulfill that condition (i.e., >80Kg, =75Kg, etc.)" />
+	<java classname="HealthProfileAssignment1" classpath="${build.dir}">
+            <arg value="getPeopleByWeight"/>
+            <arg value="="/>
+            <arg value="50"/>
+        </java>
+    </target> 	
+    <target name="clean">
+		<echo message="Clean has been called" />
+		<delete dir="${build.dir}" />
+		<echo message="${build.dir} has been deleted" />
+		<delete dir="${src.dir}/${xjc.package}" />
+		<echo message="${src.dir}/${xjc.package} has been deleted" />
+	</target>
+	
+</project>
