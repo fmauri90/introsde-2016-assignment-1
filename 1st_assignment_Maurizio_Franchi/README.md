@@ -1,9 +1,9 @@
 # Assignment 01: Reading/Writing objects to and from XML and JSON
 
-## [Introduction to Service Design and Engineering](https://github.com/IntroSDE) | [University of Trento](http://www.unitn.it/) 
+## [Introduction to Service Design and Engineering](https://github.com/IntroSDE/introsde) | [University of Trento](http://www.unitn.it/) 
 
 
-This repository is the solution to the [first assignment](https://sites.google.com/a/unitn.it/introsde_2015-16/lab-sessions/assignments/assignment-1) of the course IntroSDE of the University of Trento. This assignment cover the following topics:
+This repository is the solution to the [first assignment](https://sites.google.com/a/unitn.it/introsde_2016-17/lab-sessions/assignments/assignment-1) of the course IntroSDE of the University of Trento. This assignment cover the following topics:
 
 * ANT
 * XML, XPATH & XML Schemas
@@ -35,7 +35,7 @@ The requirements for this assignment are:
 
 **Based on [Lab 3](https://github.com/IntroSDE/lab03):**
 
-1.3 two functions (getWeight and getHeight) that given the id of a person, retrieves the weight and the height of this person;  
+1.3 Use xpath to implement methods like getWeight and getHeight (getWeight(personID) returns weight of a given person, the same for getHeight);  
 2.3 a function that print all the details for each person stored in the file people.xml;  
 3.3 a function that given the id, return the details of a person;  
 4.3 a function that print all people fulfilling a condition on the weight (>90);
