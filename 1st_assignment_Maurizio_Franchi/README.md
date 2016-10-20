@@ -13,6 +13,7 @@ This repository is the solution to the [first assignment](https://sites.google.c
 
 The class *HealthProfileReader* reads the information about the people stored in the file *people.xml*. The file has this structure:
 
+
 ```xml
 <people>
   <person id="0001">
