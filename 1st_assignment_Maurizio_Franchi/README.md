@@ -59,7 +59,7 @@ The requirements for this assignment are:
 *[src/peoplestore](src/peoplestore)*: contains the code for marshalling and un-marshalling from/to XML and marshalling to JSON;
 
 ##### File
-*[src/HealthProfileReader.java](src/HealthProfileAssignment1.java)*: contains the code to execute requirements 1.3, 2.3, 3.3, 4.3 of the previous list. The list of people are stored in people.xml;
+*[src/HealthProfileAssignment1.java](src/HealthProfileAssignment1.java)*: contains the code to execute requirements 1.3, 2.3, 3.3, 4.3 of the previous list. The list of people are stored in people.xml;
 
 *[people.xsd](people.xsd)* XML schema file for the document people.xml (requirement 1.4);
 
