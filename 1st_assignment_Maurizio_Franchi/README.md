@@ -66,7 +66,7 @@ The requirements for this assignment are:
 
 *[src/HealthProfileXmlReader.java](src/HealthProfileReader.java)*: class to execute requirement 2.4. The data are retrieved from *people.xml*;
 
-*[src/peoplestore/JavatoJson.java](src/JavatoJson.java)*: class to execute requirement 3.4. Three persons are created using Java and marshalled in JSON. The data are stored in *people.json*; 
+*[src/HealthProfileXmlWriter.java](src/HealthProfileWriter.java)*: class to execute requirement 3.4. Three persons are created using Java and marshalled in JSON. The data are stored in *people.json*; 
 
 *[src/dao/PeopleStore.java](src/dao/PeopleStore.java)* contains the data access object.
 
