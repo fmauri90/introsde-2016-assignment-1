@@ -62,9 +62,9 @@ The requirements for this assignment are:
 
 *[people.xsd](people.xsd)* XML schema file for the document people.xml (requirement 1.4);
 
-*[src/HealthProfileXml.java](src/peoplestore/JAXBMarshaller.java)*: class to execute requirement 2.4. Three persons are created using Java and marshalled in XML. The Java objects are stored in the generated file *peopleMarshall.xml*;
+*[src/HealthProfileXmlWriter.java](src/HealthProfileWriter.java)*: class to execute requirement 2.4. Three persons are created using Java and marshalled in XML. The Java objects are stored in the generated file *people_marshall.xml*;
 
-*[src/peoplestore/JAXBUnMarshaller.java](src/peoplestore/JAXBUnMarshaller.java)*: class to execute requirement 2.4. The data are retrieved from *people.xml*;
+*[src/HealthProfileXmlReader.java](src/HealthProfileReader.java)*: class to execute requirement 2.4. The data are retrieved from *people.xml*;
 
 *[src/peoplestore/JavatoJson.java](src/JavatoJson.java)*: class to execute requirement 3.4. Three persons are created using Java and marshalled in JSON. The data are stored in *people.json*; 
 
